@@ -29,18 +29,18 @@ basemap.addTo(map);
 
 let layers = {
   EARTHQUAKE: new L.LayerGroup(),
-  TECTONIC: new L.LayerGroup() 
+  // TECTONIC: new L.LayerGroup() 
 };
 
-let overlays = {
-  // 'Earthquake': layers.EARTHQUAKE,
-  'Tectonic Plates': layers.TECTONIC
-};
+// let overlays = {
+//   'Earthquake': layers.EARTHQUAKE,
+//   'Tectonic Plates': layers.TECTONIC
+// };
 
 
 
 // Add a control to the map that will allow the user to change which layers are visible.
-L.control.layers(layers, overlays).addTo(map);
+L.control.layers(null, layers).addTo(map);
 
 
 
@@ -92,7 +92,8 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
     }
   // OPTIONAL: Step 2
   // Add the data to the earthquake layer instead of directly to the map.
-  }).addTo(layers.EARTHQUAKE);
+  // }).addTo(layers.EARTHQUAKE);
+  });
 
   // Create a legend control object.
   let legend = L.control({
@@ -129,18 +130,18 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
 
   // OPTIONAL: Step 2
   // Make a request to get our Tectonic Plate geoJSON data.
-  d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(function (plate_data) {
-    // Save the geoJSON data, along with style information, to the tectonic_plates layer.
-    let tectLayer = L.geoJSON(plate_data, {
-      style: {
-        color: 'black',
-        opacity: 1,
-        weight: 2
-      }
-    });
-    tectLayer.addTo(layers.TECTONIC)
+  // d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(function (plate_data) {
+  //   // Save the geoJSON data, along with style information, to the tectonic_plates layer.
+  //   let tectLayer = L.geoJSON(plate_data, {
+  //     style: {
+  //       color: 'black',
+  //       opacity: 1,
+  //       weight: 2
+  //     }
+  //   });
+  //   tectLayer.addTo(layers.TECTONIC)
 
     // Then add the tectonic_plates layer to the map.
 
   });
-});
+
